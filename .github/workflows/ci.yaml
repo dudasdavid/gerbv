@@ -96,9 +96,9 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: gerbv-lcov.info
 
-    #- name: Rebuild Fedora 35
-    #  if: "!matrix.code_coverage"
-    #  run: npx --package mini-cross@0.15.2 mc --no-tty fedora:35 .mc/rebuild.sh
+    - name: Rebuild Fedora 35
+      if: "!matrix.code_coverage"
+      run: npx --package mini-cross@0.15.2 mc --no-tty fedora:35 .mc/rebuild.sh
 
     - name: Rebuild Ubuntu 20.04
       if: "!matrix.code_coverage"
@@ -108,12 +108,18 @@ jobs:
       if: "!matrix.code_coverage"
       run: npx --package mini-cross@0.15.2 mc --no-tty windows:amd64 .mc/rebuild.sh
 
+    - name: list all the files
+      run: |
+        sudo apt-get install tree
+        cd ~
+        tree
+
     - name: Archive gerbv binaries
       uses: actions/upload-artifact@v2
       with:
         name: gerbv-binary
         path: |
-          /home/runner/work/gerbv/gerbv/
+          /home/runner/work/gerbv/gerbv/win32
         retention-days: 5
 
     - name: Rebuild gerbv.github.io
