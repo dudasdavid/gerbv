@@ -96,9 +96,9 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: gerbv-lcov.info
 
-    - name: Rebuild Fedora 35
-      if: "!matrix.code_coverage"
-      run: npx --package mini-cross@0.15.2 mc --no-tty fedora:35 .mc/rebuild.sh
+    #- name: Rebuild Fedora 35
+    #  if: "!matrix.code_coverage"
+    #  run: npx --package mini-cross@0.15.2 mc --no-tty fedora:35 .mc/rebuild.sh
 
     - name: Rebuild Ubuntu 20.04
       if: "!matrix.code_coverage"
