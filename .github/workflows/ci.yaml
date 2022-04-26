@@ -108,6 +108,14 @@ jobs:
       if: "!matrix.code_coverage"
       run: npx --package mini-cross@0.15.2 mc --no-tty windows:amd64 .mc/rebuild.sh
 
+    - name: Archive gerbv binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: gerbv-binary
+        path: |
+          /home/runner/work/gerbv/gerbv/
+        retention-days: 5
+
     - name: Rebuild gerbv.github.io
       if: "!matrix.code_coverage"
       run: |
